@@ -29,10 +29,16 @@
           (*afm-buffer* (make-array 30 
                                     :element-type 'character
                                     :fill-pointer 0 :adjustable t)))
-      (with-open-file (in filename :direction :input)
-        (read-afm-data in font omit))
-      (resolve-composite-glyphs font)
-      font)))
+      (handler-bind
+          ((error
+            #'(lambda (c)
+                (warn "Unable to read AFM file ~A: ~A"
+                      filename c)
+                (return-from read-afm-file nil))))
+        (with-open-file (in filename :direction :input)
+          (read-afm-data in font omit))
+        (resolve-composite-glyphs font)
+        font))))
 
 (defun read-afm-data (in font omit)
   (let ((token (afm-token in)))
