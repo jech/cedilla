@@ -1,0 +1,146 @@
+.TH CEDILLA 1
+.SH NAME
+cedilla \- a best-effort text printer
+.SH SYNOPSIS
+.B cedilla
+.RB [ \-fs
+.IR fontset ]
+.RB [ \-p
+.IR papersize ]
+.RB [ \-s
+.IR size ]
+.RB [ \-bs
+.IR baselineskip ]
+.RB [ \- w ]
+.RB [ \-h
+.IR header ]
+.RB [ \-hb
+.IR header\-baseline ]
+.RB [ \-f
+.IR footer ]
+.RB [ \-fb
+.IR footer\-baseline ]
+infile 
+.RI [ outfile ]
+.SH DESCRIPTION
+.B Cedilla
+is a text printer that uses Unicode internally and will make heroic
+efforts to find or design suitable glyphs for exotic or rare characters.
+.SH OPTIONS
+.TP 8
+.BI \-fs " fontset"
+Use the list of fonts specified by
+.IR fontset .
+The set of available fontsets is listed in the file
+.BR /etc/cedilla\-config.lisp .
+.TP 8
+.BI \-p " papersize"
+Use the paper size specified by
+.I papersize
+(default
+.BR A4 ).
+The set of available paper sizes is listed in the file
+.BR /etc/cedilla\-config.lisp .
+.TP 8
+.BI \-s " size"
+Set the font size to
+.I size
+points
+(default 11).
+.TP 8
+.BI \-bs " baselineskip"
+Separate lines by
+.I baselineskip
+(by default, equal to 
+.IR size ).
+.TP 8
+.BI \-w
+Enable line wrapping.
+.TP 8
+.BI \-h " header"
+Set the header format to 
+.IR header .
+See HEADER AND FOOTER FORMATS below.
+.TP 8
+.BI \-hb " header\-baseline"
+Set the header's baseline to be at a distance of
+.I header-baseline
+(default 1cm)
+of the top of the page.  The argument must be a number in points.
+.TP 8
+.BI \-f " footer"
+Set the footer format to 
+.IR header .
+See HEADER AND FOOTER FORMATS below.
+.TP 8
+.BI \-fb " footer\-baseline"
+Set the footer's baseline to be at a distance of
+.I header\-baseline
+of the top of the page.
+.TP 8
+.B \-v
+Be verbose about unprintable characters.
+.TP 8
+.B \-l
+List all glyphs known to Cedilla in the current fontset.
+.TP 8
+.B \-V
+Display the version of Cedilla and exit.
+.TP 8
+.B \-h
+Print a short help message and exit.
+.SH FILES
+.TP 5
+.B /etc/cedilla\-config.lisp
+the system\-wide configuration file for
+.BR Cedilla .
+.SH HEADER AND FOOTER FORMAT
+The format passed to the
+.B \-h
+and
+.B \-f
+options is of the form
+.TP 8
+.RI [ left ,] center [, right ]
+where 
+.IR left ,
+.I center
+and
+.I right
+are strings that may contain any of the following sequences:
+.TP 8
+.BR %% " typeset a percent sign"
+.TP 8
+.BR %, " typeset a comma"
+.TP 8
+.BR %p " typeset the page number as an Arabic number"
+.TP 8
+.BR %P " typeset the page number in words"
+.TP 8
+.BR %r " typeset the page number as a small Roman number"
+.TP 8
+.BR %R " typeset the page number as a Roman number"
+.SH NOTES
+By design,
+.B Cedilla
+only accepts input data in UTF\-8.  You are expected to use an external
+converter such as 
+.BR iconv (1)
+or
+.BR luit (1)
+in order to print text encoded in a legacy encoding.
+.B Cedilla
+is unable to print data that comes from a pipe; this is unavoidable,
+as
+.B Cedilla
+makes two passes over its input file.
+.SH AUTHOR
+.B Cedilla
+was written by Juliusz Chroboczek <jch@pps.jussieu.fr>.
+.SH SEE ALSO
+.BR iconv (1),
+.BR luit (1),
+.BR a2ps (1),
+.BR enscript (1),
+.BR ogonkify (1),
+.BR lpr (1).

@@ -1,0 +1,64 @@
+Cedilla 0.3:
+  • Implemented headers and footers.
+  • Implemented line wrapping.
+  • Implemented the ‘-l’ option for debugging fontsets.
+  • Changed the default font size to 11.
+  • Changed the default margins to make Markus happy.
+  • Updated all data (character properties, AGL, Zapf Dingbats
+    mapping) to Unicode 3.2 and version 2.1 of the AGL.
+  • Changed the algorithm for generating glyph names to version 2.1 of
+    the AGL.  This forced the following change.
+  • Changed the :ENCODING option of fonts to allow one-to-many mappings.
+  • Fixed a bug with strings of more than 60 characters being output
+    incorrectly.
+  • Fixed a bug with transformed glyphs' metrics.
+  • Made the typesetter ignore a #\Newline following a #\Page and not
+    open a new page if there is a #\Page #\Newline sequence at the end
+    of the document.
+  • Minor bug fixes to the command line parsing.
+  • Changed ‘-a’ to ‘-ansi’ in Clisp's command line; that's what
+    recent versions of Clisp want.
+  • Removed support for the Greek Courier fonts, which are too broken
+    to work around.
+
+Cedilla 0.2:
+
+  • New glyph selection algorithm which exhibits hopefully more
+    intuitive behaviour than the previous one.
+  • When searching for a suitable glyph, circularity detection that
+    actually works.
+  • The normalisation, alternatives and fallbacks tables may now
+    contain combining CCS.  While this breaks our CCS model, it is
+    not only necessary in order to comply with the diktats of Unicode,
+    but also turns out to be more generally useful.
+  • Because of the above changes, the glyph alternatives for combining
+    characters have been moved up from the glyph level to the character
+    level.  This makes them useful with fixed-encoding fonts (which
+    don't have a notion of glyph name), and will come in handy if we
+    implement support for CIDFonts or TTFs.
+  • The glyph selection algorithm will now attempt to search for pre-
+    composed diacritics.  While this breaks our CCS model even
+    further, it is useful for Greek and Vietnamese.
+  • Special-cased some combinations of diacritics for Greek and
+    Vietnamese.
+  • Positioning of composites will now sometimes position relative to
+    the base glyph rather than what has been composed until now; this is
+    useful for putting accents over Vietnamese horned characters.
+  • Part of the alternate glyph data for combining characters is now
+    generated automatically from the UnicodeData.
+  • Support for downloading fonts in PFB format.
+  • Typesetting dotless glyphs now uses clipping rather than overstriking
+    with a white square.
+  • Support for linearly transformed glyphs (turned, rotated, mirrored,
+    sub- and superscripts).
+  • A few more types of magic have been implemented, notably doubled
+    and circled glyphs.
+  • Partial support for the Omega Serif fonts.
+  • A number of minor PostScript generation and DSC compliance tweaks.
+  • A number of portability and efficiency tweaks (thanks to Bruno
+    Haible).
+
+Local variables: ***
+Mode: text ***
+Coding: utf-8 ***
+End: ***

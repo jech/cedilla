@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cedilla README README.ps
+cedilla INSTALL INSTALL.ps

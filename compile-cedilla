@@ -1,0 +1,12 @@
+#!/bin/sh
+
+. ./cedilla-config
+
+clisp -ansi -q -x "(progn (load \"system.lisp\") 
+                          (compile-cedilla)
+                          (make-cedilla-binary \"$CLISP\"
+                                               \"cedilla\" \"install-cedilla\"
+                                               \"$BINDIR\" \"$LIBDIR\" 
+                                               \"$ETCDIR\" \"$MANDIR\"))"
+chmod +x ./cedilla
+chmod +x ./install-cedilla

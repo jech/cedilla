@@ -1,0 +1,25 @@
+                          Installing cedilla
+
+
+Cedilla relies on the CLISP implementation of the Common Lisp
+programming language.  For more information about CLISP, please see
+
+  http://www.cons.org
+
+1. Edit the file ‘cedilla-config’ to point it at the CLISP binary
+   installed on your system..
+
+2. Type ‘./compile-cedilla’.  This step will create a bunch of ‘*.fas’
+   files as well as the files ‘cedilla’ and ‘install-cedilla’.
+
+3. Type ‘su -c "sh ./install-cedilla"’.  This step will copy ‘cedilla’,
+   the ‘*.fas’ files as well as ‘cedilla-config.lisp’ to random
+   locations in your filesystem.
+
+4. Edit the file ‘/etc/cedilla-config.lisp’ to point at available font
+   metric files and font files.
+
+Local variables: ***
+Mode: text ***
+Coding: utf-8 ***
+End: ***

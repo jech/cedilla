@@ -1,0 +1,15 @@
+# The CLISP binary
+CLISP=/usr/bin/clisp
+
+# Where the main Cedilla binary will be installed
+BINDIR=/usr/bin
+
+# Where the cedilla-config.lisp file lives
+ETCDIR=/etc
+
+# Where Cedilla's FASL files will be kept
+LIBDIR=/usr/lib/cedilla
+
+# Where the cedilla(1) manual page will be installed
+MANDIR=/usr/share/man/man1
+
