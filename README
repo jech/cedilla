@@ -54,7 +54,7 @@ retouch an available glyph.  The main application is to produce dotless
 glyphs for further composition; another use is to provide barred or doubled
 glyphs.
 
-Example: (Slovenian sentence containing đ.)
+Example: Međunarodna željeznička unija.
 
 This mechanism is also used to provide circled and more generally enclosed
 glyphs; this is not expected to be useful in practice.
@@ -125,9 +125,8 @@ marks which will in turn be replaced with a sequence of two commas.
 
 The fallbacks mechanism is a rather complex beast, and interacts in
 wonderful and mysterious ways with verious mechanisms for glyph generation
-(notably compositing).  While it has been greatly improved in this version,
-its exact mechanics are still in a state of flux, and will be described when
-they have stabilised.
+(notably compositing).  Currently, the only place where it is described is
+the source code.
 
 
 INSTALLING CEDILLA

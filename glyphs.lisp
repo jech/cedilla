@@ -202,11 +202,16 @@
     ((or (symbolp c-ccs) (eql 0 (ccs-combining-class c-ccs)))
      (find-magic-glyph c-ccs b-ccs font-list font))
     (t
-     (let ((b-glyph 
-            (ensure-glyph
-             (if font
-                 (find-glyph-with-font (cons ':dotless b-ccs) font font-list)
-                 (find-glyph (cons ':dotless b-ccs) font-list)))))
+     (let* ((b-dotless
+             (if (member (ccs-combining-class c-ccs)
+                         '(212 214 216 228 230 232))
+                 (cons ':dotless b-ccs)
+                 b-ccs))
+            (b-glyph 
+             (ensure-glyph
+              (if font
+                  (find-glyph-with-font b-dotless font font-list)
+                  (find-glyph b-dotless font-list)))))
        (and b-glyph
             (let* ((preferred-font
                     (or font
