@@ -19,6 +19,9 @@ programming language.  For more information about CLISP, please see
 4. Edit the file ‘/etc/cedilla-config.lisp’ to point at available font
    metric files and font files.
 
+If you're using the darcs tree rather than a distribution tarball, you
+will need to run the ‘predist’ script before compiling cedilla.
+
 Local variables: ***
 Mode: text ***
 Coding: utf-8 ***
