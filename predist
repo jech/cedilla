@@ -1,4 +1,5 @@
 #!/bin/sh
-
 cedilla README README.ps
 cedilla INSTALL INSTALL.ps
+chmod +x clean compile-cedilla predist
+
