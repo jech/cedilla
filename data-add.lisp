@@ -213,4 +213,5 @@
   ;; ...
   (#u0332 "overscore")    ; low line below
   (#u0336 "overscore")
+  (#u03BC "mu")
 )
