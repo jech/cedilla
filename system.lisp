@@ -40,14 +40,15 @@
   (labels ((dir (s) (if (eql #\/ (aref s (- (length s) 1)))
                         s 
                         (concatenate 'string s "/")))
-           (make-dir (dir out) (format out "mkdir -p '~A'~%" (dir dir)))
+           (make-dir (dir out) (format out "mkdir -p \"$TARGET\"'~A'~%"
+                                       (dir dir)))
            (target (file dir) 
              (make-pathname :defaults (pathname file)
                             :directory (pathname (dir dir))))
            (install (file dir out &optional executable (name file))
-             (format out "cp -f '~A' '~A'~%" file (target name dir))
+             (format out "cp -f '~A' \"$TARGET\"'~A'~%" file (target name dir))
              (when executable
-               (format out "chmod +x '~A'~%" (target name dir)))))
+               (format out "chmod +x \"$TARGET\"'~A'~%" (target name dir)))))
     (with-open-file (out binary :direction :output)
       (format out "#!~A -ansi -q~%" clisp)
       (format out ";;; Automatically generated file -- do not modify.~%")
