@@ -1,3 +1,6 @@
+Cedilla 0.5:
+  • Add mu as an alternate name for mugreek.
+
 Cedilla 0.4:
   • Don't use a dotless glyph on a base glyph if the combining mark is
     not above.
