@@ -13,7 +13,7 @@
 
 (in-package "CEDILLA")
 
-(defparameter *cedilla-version* "0.3")
+(defparameter *cedilla-version* "0.5")
 
 (defmacro define-fontset (name spec)
   (let ((symbol (gensym "SYMBOL")))
