@@ -227,7 +227,7 @@ These data are are supplemented with a table of (good) character
 alternatives, a table of (bad) character fallbacks, and a table of alternate
 glyph names.  See the comments at the beginning of ‘unicode.lisp’ for
 information about the data structures used, and the file ‘data-add.lisp’ for
-the addtional data provided.
+the additional data provided.
 
 The built-in font is defined in the file ‘built-in.lisp’.  You should feel
 free to add glyphs to this font, as Cedilla will only download those glyphs
