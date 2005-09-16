@@ -17,9 +17,6 @@
 
 ;;; Font sets using standard PS fonts.
 
-(define-fontset "test"
-  `((:built-in :width 600 :cap-height 562 :x-height 426)))
-
 (define-fontset "courier"
   `((:afm "/usr/share/texmf/fonts/afm/adobe/courier/pcrr8a.afm"
      :omit ,*greek-glyph-names*)
