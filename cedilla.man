@@ -87,7 +87,7 @@ List all glyphs known to Cedilla in the current fontset.
 .B \-V
 Display the version of Cedilla and exit.
 .TP 8
-.B \-h
+.B \-?
 Print a short help message and exit.
 .SH FILES
 .TP 5
