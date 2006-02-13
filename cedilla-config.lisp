@@ -18,38 +18,38 @@
 ;;; Font sets using standard PS fonts.
 
 (define-fontset "courier"
-  `((:afm "/usr/share/texmf/fonts/afm/adobe/courier/pcrr8a.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/adobe/courier/pcrr8a.afm"
      :omit ,*greek-glyph-names*)
     (:built-in :width 600 :cap-height 562 :x-height 426)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 (define-fontset "times"
-  `((:afm "/usr/share/texmf/fonts/afm/adobe/times/ptmr8a.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/adobe/times/ptmr8a.afm"
      :omit ,*greek-glyph-names*)
     (:built-in :width 667 :figure-width 500 :cap-height 662 :x-height 450)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 (define-fontset "helvetica"
-  `((:afm "/usr/share/texmf/fonts/afm/adobe/helvetic/phvr8a.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/adobe/helvetic/phvr8a.afm"
      :omit ,*greek-glyph-names*)
     (:built-in :width 722 :figure-width 556 :cap-height 718 :x-height 523)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; Just like Courier, but with narrower spaces.
 
 (define-fontset "courier-space"
   `((:space :width 300)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/courier/pcrr8a.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/courier/pcrr8a.afm"
      :omit ,*greek-glyph-names*)
     (:built-in :width 600 :cap-height 562 :x-height 426)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; Random free fonts.
@@ -63,8 +63,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/cour.pfa")
      :omit ,*greek-glyph-names*)
     (:built-in :width 600 :cap-height 562 :x-height 426)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; An Adobe font that found its way into X11R5.
@@ -74,8 +74,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/UTRG____.pfa")
      :omit ,*greek-glyph-names*)
     (:built-in :width 684 :figure-width 530 :cap-height 692 :x-height 509)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; The Luxi fonts, included with XFree86 4.2.0.
@@ -85,8 +85,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/l047013t.pfa")
      :omit ,*greek-glyph-names*)
     (:built-in :width 600 :cap-height 692 :x-height 509)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 (define-fontset "luxi-sans"
@@ -94,8 +94,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/l048013t.pfa")
      :omit ,*greek-glyph-names*)
     (:built-in :width 722 :figure-width 556 :cap-height 723 :x-height 530)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 (define-fontset "luxi-serif"
@@ -103,8 +103,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/l049013t.pfa")
      :omit ,*greek-glyph-names*)
     (:built-in :width 667 :figure-width 500 :cap-height 723 :x-height 530)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; The Omega Serif fonts, a set of international fonts provided with
@@ -119,44 +119,44 @@
 (defparameter *omega-serif-fonts*
   `(
     ;; Omega Serif Common
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omseco.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omseco.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omseco.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omseco.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Latin
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omsela.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omsela.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omsela.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omsela.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Greek
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omsegr.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omsegr.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omsegr.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omsegr.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Cyrillic and Cyrillic Extended
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omsecy.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omsecy.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omsecy.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omsecy.pfb")
      :encoding ,#'omega-encoding)
     #+ignore
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omsecx.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omsecx.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omsecx.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omsecx.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Armenian
     #+ignore
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omseha.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omseha.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omseha.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omseha.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Hebrew
     #+ignore
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omsehe.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omsehe.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omsehe.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omsehe.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif Tifinagh
     #+ignore
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omseti.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omseti.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omseti.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omseti.pfb")
      :encoding ,#'omega-encoding)
     ;; Omega Serif IPA
     #+ignore
-    (:afm "/usr/share/texmf/fonts/afm/public/omega/omseip.afm"
-     :resources ("/usr/share/texmf/fonts/type1/public/omega/omseip.pfb")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omseip.afm"
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omseip.pfb")
      :encoding ,#'omega-encoding)
     (:built-in :width 667 :figure-width 500 :cap-height 662 :x-height 450)))
 )
@@ -170,30 +170,30 @@
 ;;; The alternative is to use them with the Times-Roman font, with
 ;;; which they blend well
 (define-fontset "times-omega-serif"
-  `((:afm "/usr/share/texmf/fonts/afm/adobe/times/ptmr8a.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/adobe/times/ptmr8a.afm"
      :omit ,*greek-glyph-names*)
     ,@*omega-serif-fonts*))
 
 ;;; Antykwa Poltawskiego.
 
 (define-fontset "antp"
-  `((:afm "/usr/share/texmf/fonts/afm/public/antp/antpr.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/public/antp/antpr.afm"
      :omit ,*greek-glyph-names*
-     :resources ("/usr/share/texmf/fonts/type1/public/antp/antpr.pfb"))
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/antp/antpr.pfb"))
     (:built-in :width 656 :figure-width 480 :cap-height 700 :x-height 440)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; Antykwa Torunska.
 
 (define-fontset "antt"
-  `((:afm "/usr/share/texmf/fonts/afm/public/antt/anttr.afm"
+  `((:afm "/usr/share/texmf-tetex/fonts/afm/public/antt/anttr.afm"
      :omit ,*greek-glyph-names*
-     :resources ("/usr/share/texmf/fonts/type1/public/antt/anttr.pfb"))
+     :resources ("/usr/share/texmf-tetex/fonts/type1/public/antt/anttr.pfb"))
     (:built-in :width 763 :figure-width 520 :cap-height 714 :x-height 504)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; The URW++ fonts included with Ghostscript.  The versions included
@@ -205,8 +205,8 @@
      :resources ("/usr/share/fonts/type1/gsfonts/a010013l.pfb")
      :omit ,*greek-glyph-names*)
     (:built-in :width 813 :figure-width 554 :cap-height 739 :x-height 547)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
     
 (define-fontset "bookman"
@@ -214,8 +214,8 @@
      :resources ("/usr/share/fonts/type1/gsfonts/b018012l.pfb")
      :omit ,*greek-glyph-names*)
     (:built-in :width 740 :figure-width 620 :cap-height 681 :x-height 485)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
     
 (define-fontset "century-schoolbook"
@@ -223,8 +223,8 @@
      :resources ("/usr/share/fonts/type1/gsfonts/c059013l.pfb")
      :omit ,*greek-glyph-names*)
     (:built-in :width 722 :figure-width 556 :cap-height 722 :x-height 466)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
     
 (define-fontset "palladio"
@@ -232,8 +232,8 @@
      :resources ("/usr/share/fonts/type1/gsfonts/p052003l.pfb")
      :omit ,*greek-glyph-names*)
     (:built-in :width 709 :figure-width 500 :cap-height 692 :x-height 469)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; Cedilla really should compensate for the font's ItalicAngle when
@@ -244,8 +244,8 @@
      :resources ("/usr/share/fonts/type1/gsfonts/z003034l.pfb")
      :omit ,*greek-glyph-names*)
     (:built-in :width 520 :figure-width 440 :cap-height 678 :x-height 411)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; This is a Cyrillic font that uses standard glyph names -- no
@@ -260,8 +260,8 @@
      :resources ("/usr/X11R6/lib/X11/fonts/Type1/n022003d.pfb")
      :omit ("uni0259" ,@*greek-glyph-names*))
     (:built-in :width 600 :cap-height 562 :x-height 426)
-    (:afm "/usr/share/texmf/fonts/afm/adobe/symbol/psyr.afm")
-    (:afm "/usr/share/texmf/fonts/afm/adobe/zapfding/pzdr.afm"
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
 ;;; Paper sizes.  See macros.lisp for additional keyword arguments.
