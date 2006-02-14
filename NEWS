@@ -1,3 +1,8 @@
+Cedilla 0.6:
+  • Fix support for ZapfDingbats and the Omega fonts.
+  • Update AFM paths to point at the new version of teTeX.
+  • Add Symbol and ZapfDingbats to the Omega fontsets.
+
 Cedilla 0.5:
   • Add mu as an alternate name for mugreek.
 
