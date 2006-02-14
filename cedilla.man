@@ -129,6 +129,7 @@ converter such as
 or
 .BR luit (1)
 in order to print text encoded in a legacy encoding.
+
 .B Cedilla
 is unable to print data that comes from a pipe; this is unavoidable,
 as
