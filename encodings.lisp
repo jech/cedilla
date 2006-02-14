@@ -553,5 +553,5 @@
 ))
 
 (defun omega-encoding (ccs)
-  (or (gethash ccs *omega-glyph-names*)
-      (ccs-glyph-names ccs)))
+  (let ((name (gethash ccs *omega-glyph-names*)))
+    (if name (list name) (ccs-glyph-names ccs))))
