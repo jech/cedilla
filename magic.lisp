@@ -61,7 +61,7 @@
     ((:keycap #.(code-char #x20E3)) (make-enclosed-glyph glyph "KCP" 200))
     ((:bar) (make-barred-glyph base glyph))
     ((:double-v :double-h) (make-overstruck-glyph glyph glyph type))
-    ((:small :narrow :wide :stretch :super :sub
+    ((:small :lowercase :narrow :wide :stretch :super :sub
              :mirror-h :mirror-v :rotate :turn)
      (make-trans-glyph glyph type))
     (t nil)))
@@ -169,6 +169,7 @@
            (make-composite-component :glyph g2 :dx dx :dy dy)))))
 
 (defvar *small-matrix* #(0.5 0 0 0.5 0 0))
+(defvar *lowercase-matrix* #(1 0 0 0.7 0 0))
 (defvar *narrow-matrix* #(0.5 0 0 1 0 0))
 (defvar *wide-matrix* #(2 0 0 1 0 0))
 (defvar *mirror-h-matrix* #(-1 0 0 1 0 0))
@@ -181,6 +182,7 @@
   (let ((matrix 
          (ecase type
            ((:super :sub :small) *small-matrix*)
+           ((:lowercase) *lowercase-matrix*)
            ((:narrow) *narrow-matrix*)
            ((:wide) *wide-matrix*)
            ((:stretch) *stretch-matrix*)
@@ -194,7 +196,7 @@
                (ecase type
                  ((:super) (values (glyph-width glyph*) 0 300))
                  ((:sub) (values (glyph-width glyph*) 0 -300))
-                 ((:small :narrow :wide :stretch) 
+                 ((:small :lowercase :narrow :wide :stretch)
                   (values (glyph-width glyph*) 0 0))
                  ((:mirror-h) (values (glyph-width glyph)
                                       (glyph-width glyph) 0))
