@@ -72,7 +72,8 @@
                                   :name (font-name font)
                                   :font font
                                   :x0 x0 :y0 y0 :x1 x1 :y1 y1
-                                  :matrix matrix)))
+                                  :matrix matrix
+                                  :resources (font-resources font))))
               (push font* (font-transformed-fonts font))
               font*))))))
 
@@ -122,6 +123,12 @@
 
 (defmethod make-transformed-glyph ((glyph glyph) matrix)
   (make-generic-transformed-glyph glyph matrix))
+
+(defmethod ensure-instance :before ((glyph transformed-glyph))
+  (ensure-instance (transformed-glyph-glyph glyph)))
+
+(defmethod ensure-instance :before ((glyph generic-transformed-glyph))
+  (ensure-instance (generic-transformed-glyph-glyph glyph)))
 
 (defmethod setup-font (out (font transformed-font) size name)
   (declare (ignore size))
