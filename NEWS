@@ -1,10 +1,12 @@
 Cedilla 0.6:
-  • Fix support for ZapfDingbats and the Omega fonts.
-  • Update AFM paths to point at the new version of teTeX.
-  • Add Symbol and ZapfDingbats to the Omega fontsets.
+  • Fixed support for ZapfDingbats and the Omega fonts.
+  • Updated AFM paths to point at the new version of teTeX.
+  • Added Symbol and ZapfDingbats to the Omega fontsets.
+  • Added Delta as an alternate name for Deltagreek.
+  • More complete support for OmegaSerif Cyrillic.
 
 Cedilla 0.5:
-  • Add mu as an alternate name for mugreek.
+  • Added mu as an alternate name for mugreek.
 
 Cedilla 0.4:
   • Don't use a dotless glyph on a base glyph if the combining mark is
