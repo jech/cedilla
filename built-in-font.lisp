@@ -98,7 +98,8 @@
     (format out "/BuildGlyph {~
                  exch begin ~
                  /CharProc load dup ~
-                 2 index known {exch get exec} {600 0 0 0 0 0 setcachedevice} ~
+                 2 index known {exch get exec} ~
+                 {pop pop 600 0 0 0 0 0 setcachedevice} ~
                  ifelse end } bind def~%")
     (format out "/CharProc ~A dict dup begin~%" (length glyphs))
     (dolist (glyph glyphs)
