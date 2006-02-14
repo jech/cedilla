@@ -132,6 +132,7 @@
   (#u20D0 #u20D6)
   (#u20D1 #u20D7)
   ;; Non-combining characters
+  (#u0138 (:lowercase . #\K))
   (#u018F (:stretch . #u0259))
   (#u01DD (:turn . #\e))
   (#u0258 (:mirror-h . #\e))
