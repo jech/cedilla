@@ -62,7 +62,7 @@
     ((:bar) (make-barred-glyph base glyph))
     ((:double-v :double-h) (make-overstruck-glyph glyph glyph type))
     ((:small :lowercase :narrow :wide :stretch :super :sub
-             :mirror-h :mirror-v :rotate :turn)
+             :mirror-h :mirror-v :rotate :rotate-right :turn)
      (make-trans-glyph glyph type))
     (t nil)))
 
@@ -176,6 +176,7 @@
 (defvar *mirror-v-matrix* #(1 0 0 -1 0 0))
 (defvar *turn-matrix* #(-1 0 0 -1 0 0))
 (defvar *rotate-matrix* #(0 1 -1 0 0 0))
+(defvar *rotate-right-matrix* #(0 -1 1 0 0 0))
 (defvar *stretch-matrix* #(1 0 0 1.4 0 0))
 
 (defun make-trans-glyph (glyph type)
@@ -189,6 +190,7 @@
            ((:mirror-h) *mirror-h-matrix*)
            ((:mirror-v) *mirror-v-matrix*)
            ((:rotate) *rotate-matrix*)
+           ((:rotate-right) *rotate-right-matrix*)
            ((:turn) *turn-matrix*))))
     (let ((glyph* (make-transformed-glyph glyph matrix)))
       (and glyph*
@@ -204,7 +206,9 @@
                  ((:turn) (values (glyph-width glyph) 
                                   (glyph-width glyph) (glyph-y1 glyph)))
                  ((:rotate) (values (glyph-y1 glyph) 
-                                    (glyph-y1 glyph) 0)))
+                                    (glyph-y1 glyph) 0))
+                 ((:rotate-right) (values (glyph-y1 glyph)
+                                          0 (glyph-y1 glyph))))
              (if (and (= width (glyph-width glyph*)) (= 0 dx) (= 0 dy))
                  glyph*
                  (make-composite-glyph
