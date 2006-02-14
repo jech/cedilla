@@ -7,7 +7,7 @@ programming language.  For more information about CLISP, please see
   http://www.cons.org
 
 1. Edit the file ‘cedilla-config’ to point it at the CLISP binary
-   installed on your system..
+   installed on your system.
 
 2. Type ‘./compile-cedilla’.  This step will create a bunch of ‘*.fas’
    files as well as the files ‘cedilla’ and ‘install-cedilla’.
