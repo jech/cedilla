@@ -4,6 +4,8 @@ Cedilla 0.6:
   • Added Symbol and ZapfDingbats to the Omega fontsets.
   • Added Delta as an alternate name for Deltagreek.
   • More complete support for OmegaSerif Cyrillic.
+  • Implemented magic type :lowercase.
+  • Typeset Kalaallisut kra as (:lowercase #\K).
 
 Cedilla 0.5:
   • Added mu as an alternate name for mugreek.
