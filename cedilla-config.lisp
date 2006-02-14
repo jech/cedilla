@@ -158,7 +158,10 @@
     (:afm "/usr/share/texmf-tetex/fonts/afm/public/omega/omseip.afm"
      :resources ("/usr/share/texmf-tetex/fonts/type1/public/omega/omseip.pfb")
      :encoding ,#'omega-encoding)
-    (:built-in :width 667 :figure-width 500 :cap-height 662 :x-height 450)))
+    (:built-in :width 667 :figure-width 500 :cap-height 662 :x-height 450)
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
+     :encoding ,#'zapf-dingbats-encoding)))
 )
 
 ;;; One way of making the Omega Serif fonts usable is to simply
