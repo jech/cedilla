@@ -199,11 +199,11 @@
     (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
 
-;;; The URW++ fonts included with Ghostscript.  The versions included
-;;; with GS 6.0 cover the full PS level 3 character set, which
-;;; covers most European languages.
+;;; The URW++ fonts included with Ghostscript.  Older versions cover
+;;; the full PS level 3 character set, which covers most European
+;;; languages.  Recent add Cyrillic glyphs.
 
-(define-fontset "gothicl"
+(define-fontset "urw-gothic"
   `((:afm "/usr/share/fonts/type1/gsfonts/a010013l.afm"
      :resources ("/usr/share/fonts/type1/gsfonts/a010013l.pfb")
      :omit ,*greek-glyph-names*)
@@ -229,7 +229,34 @@
     (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
     (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
      :encoding ,#'zapf-dingbats-encoding)))
-    
+
+(define-fontset "nimbus-sans"
+  `((:afm "/usr/share/fonts/type1/gsfonts/n019003l.afm"
+     :resources ("/usr/share/fonts/type1/gsfonts/n019003l.pfb")
+     :omit ,*greek-glyph-names*)
+    (:built-in :width 667 :figure-width 556 :cap-height 729 :x-height 524)
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
+     :encoding ,#'zapf-dingbats-encoding)))
+
+(define-fontset "nimbus-roman"
+  `((:afm "/usr/share/fonts/type1/gsfonts/n021003l.afm"
+     :resources ("/usr/share/fonts/type1/gsfonts/n021003l.pfb")
+     :omit ,*greek-glyph-names*)
+    (:built-in :width 667 :figure-width 500 :cap-height 662 :x-height 450)
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
+     :encoding ,#'zapf-dingbats-encoding)))
+
+(define-fontset "nimbus-mono"
+  `((:afm "/usr/share/fonts/type1/gsfonts/n022003l.afm"
+     :resources ("/usr/share/fonts/type1/gsfonts/n022003l.pfb")
+     :omit ,*greek-glyph-names*)
+    (:built-in :width 600 :figure-width 600 :cap-height 563 :x-height 417)
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/symbol/psyr.afm")
+    (:afm "/usr/share/texmf-tetex/fonts/afm/adobe/zapfding/pzdr.afm"
+     :encoding ,#'zapf-dingbats-encoding)))
+
 (define-fontset "palladio"
   `((:afm "/usr/share/fonts/type1/gsfonts/p052003l.afm"
      :resources ("/usr/share/fonts/type1/gsfonts/p052003l.pfb")
