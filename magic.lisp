@@ -1,5 +1,5 @@
 ;;; This file is part of Cedilla.
-;;; Copyright (C) 2002-2005 by Juliusz Chroboczek.
+;;; Copyright (C) 2002-2006 by Juliusz Chroboczek.
 
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -51,6 +51,7 @@
 
 (defun make-magic-glyph (type base glyph)
   (case type
+    ((:simplify) glyph)
     ((:dotless) (make-dotless-glyph glyph))
     ((:circle #.(code-char #x20DD)) (make-enclosed-glyph glyph "CRC" 150))
     ((:small-circle) (make-enclosed-glyph glyph "CRC" 300))

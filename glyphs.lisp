@@ -1,5 +1,5 @@
 ;;; This file is part of Cedilla.
-;;; Copyright (C) 2002 by Juliusz Chroboczek.
+;;; Copyright (C) 2002-2006 by Juliusz Chroboczek.
 
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -173,6 +173,8 @@
 
 (defun find-magic-glyph (magic ccs font-list &optional font simple)
   "Compute a magic glyph."
+  (when (eq magic ':simplify)
+    (setq simple nil))
   (flet ((f-g (ccs)
            (cond
              ((and font simple) 
