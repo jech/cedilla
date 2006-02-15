@@ -1,5 +1,5 @@
 ;;; This file is part of Cedilla.
-;;; Copyright (C) 2002 by Juliusz Chroboczek.
+;;; Copyright (C) 2002-2006 by Juliusz Chroboczek.
 
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -60,6 +60,9 @@
           (format nil
             "30 SLW [60] 0 setdash ~A ~A MT ~A ~A ~A 0 360 arc stroke"
             (+ cx r) cy cx cy r)))
+      (let* ((a (/ width 22.0)) (b (- width (* 2 a))))
+        (define-glyph "whitesquare" width (- a 15) -15 (+ a b 15) (+ b 15)
+          (format nil "30 SLW ~A 0 ~A ~A RS" a b b)))
       (define-glyph "hookabovecomb" 200 5 -15 195 255
         (format nil
           "30 SLW ~%~
