@@ -1,5 +1,5 @@
 ;;; This file is part of Cedilla.
-;;; Copyright (C) 2002 by Juliusz Chroboczek.
+;;; Copyright (C) 2002-2009 by Juliusz Chroboczek.
 
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -143,13 +143,11 @@
            (setf base char pre-ccs '())))))))
 
 (defun printable-ccs (ccs)
-  (typecase ccs
-    (vector
-     (if (every #'characterp ccs)
-         `(coerce ',(coerce ccs 'list) 'string)
-         `(vector ,@(mapcar #'printable-ccs (coerce ccs 'list)))))
-    (cons `',ccs)
-    (t ccs)))
+  (etypecase ccs
+    (character (char-code ccs))
+    (symbol ccs)
+    (cons (cons (printable-ccs (car ccs)) (printable-ccs (cdr ccs))))
+    (vector (map 'vector #'printable-ccs ccs))))
 
 (defun make-data (out-filename unicode-data-filename glyph-list-filename)
   (let ((unicode-data
@@ -222,66 +220,85 @@
     (maphash
      #'(lambda (key val) (push (cons key val) glyph-names))
      *glyph-names*)
-    (with-open-file (out out-filename :direction :output)
+    (with-open-file (out out-filename :direction :output :if-exists :supersede)
       (with-standard-io-syntax
         (let ((*print-pretty* nil)
-              (*package* (find-package "MAKE-CEDILLA-DATA")))
+              (*package* (find-package "CEDILLA")))
           (format out ";;; Automatically generated file -- do not modify~%")
           (print '(in-package "CEDILLA") out)
           (print
+           '(defun cedilla::parse-ccs (cedilla::ccs)
+             (etypecase cedilla::ccs
+               (integer (code-char cedilla::ccs))
+               (vector (map 'vector #'cedilla::parse-ccs cedilla::ccs))
+               (cons (cons
+                      (if (integerp (car cedilla::ccs))
+                          (code-char (car cedilla::ccs))
+                          (car cedilla::ccs))
+                      (cedilla::parse-ccs (cdr cedilla::ccs))))))
+           out)
+          (print
            `(eval-when (load eval)
-             (let ((cct *combining-class-table*))
-               (flet ((frob (char ccs)
-                       (setf (gethash char cct) ccs)))
+             (let ((cedilla::cct cedilla::*combining-class-table*))
+               (flet ((cedilla::frob (cedilla::code cedilla::class)
+                        (setf (gethash (code-char cedilla::code) cedilla::cct)
+                              cedilla::class)))
                  ,@(mapcar
                     #'(lambda (entry) 
-                        `(frob ,(car entry) ,(printable-ccs (cdr entry))))
+                        `(cedilla::frob ',(char-code (car entry))
+                                        ',(cdr entry)))
                     combining-classes))))
            out)
           (print
            `(eval-when (load eval)
-             (let ((cdt *canonical-decomposition-table*))
-               (flet ((frob (char ccs)
-                       (setf (gethash char cdt) ccs)))
+             (let ((cedilla::cdt cedilla::*canonical-decomposition-table*))
+               (flet ((cedilla::frob (cedilla::code cedilla::ccs)
+                       (setf (gethash (code-char cedilla::code) cedilla::cdt)
+                             (cedilla::parse-ccs cedilla::ccs))))
                  ,@(mapcar
                     #'(lambda (entry) 
-                        `(frob ,(car entry) 
-                          ,(printable-ccs (cdr entry))))
+                        `(cedilla::frob ',(char-code (car entry))
+                                        ',(printable-ccs (cdr entry))))
                     canon-decomps))))
            out)
           (print
            `(eval-when (load eval)
-             (let ((at *alternatives-table*))
-               (flet ((frob (char list)
-                       (setf (gethash char at) list)))
+             (let ((cedilla::at cedilla::*alternatives-table*))
+               (flet ((cedilla::frob (cedilla::code cedilla::list)
+                        (setf (gethash (code-char cedilla::code) cedilla::at)
+                              (mapcar #'cedilla::parse-ccs cedilla::list))))
                  ,@(mapcar
                     #'(lambda (entry) 
-                        `(frob ,(car entry) 
-                          (list ,@(nreverse (mapcar #'printable-ccs
-                                                    (cdr entry))))))
+                        `(cedilla::frob
+                          ',(char-code (car entry))
+                          ',(nreverse (mapcar #'printable-ccs (cdr entry)))))
                     good-decomps))))
            out)
           (print
            `(eval-when (load eval)
-             (let ((ft *fallbacks-table*))
-               (flet ((frob (char list)
-                       (setf (gethash char ft) list)))
+              (let ((cedilla::ft cedilla::*fallbacks-table*))
+                (flet ((cedilla::frob (cedilla::code cedilla::list)
+                         (setf (gethash (code-char cedilla::code) cedilla::ft)
+                               cedilla::list)))
                  ,@(mapcar
-                    #'(lambda (entry) 
-                        `(frob ,(car entry) 
-                          (list ,@(nreverse (mapcar #'printable-ccs 
-                                                    (cdr entry))))))
+                    #'(lambda (entry)
+                        `(cedilla::frob
+                          ',(char-code (car entry))
+                          ',(nreverse
+                             (mapcar #'printable-ccs (cdr entry)))))
                     bad-decomps))))
            out)
           (print
            `(eval-when (load eval)
-             (let ((gn *glyph-names*))
-               (flet ((frob (char name)
-                       (setf (gethash char gn) name)))
+             (let ((cedilla::gn cedilla::*glyph-names*))
+               (flet ((cedilla::frob (cedilla::code cedilla::name)
+                       (setf (gethash (cedilla::parse-ccs cedilla::code)
+                                      cedilla::gn)
+                             cedilla::name)))
                  ,@(mapcar
                     #'(lambda (entry)
-                        `(frob 
-                          ,(printable-ccs (car entry))
+                        `(cedilla::frob
+                          ',(printable-ccs (car entry))
                           ',(reverse (cdr entry))))
                     glyph-names))))
            out)))))
@@ -304,12 +321,12 @@
   (let ((data
          (read-data-file unicode-data-filename
                          #'read-unicode-data-line-for-printing)))
-    (let ((a (make-array #x10000)))
+    (let ((a (make-array #x10000 :initial-element nil)))
       (dolist (e data)
         (when (and e (< (car e) #x10000))
           (setf (aref a (car e)) (cadr e))))
       (with-open-file (out out-filename :direction :output
-                           :external-format charset:utf-8)
+                           :external-format cedilla:*external-format-utf8*)
         (loop for i from from upto to
               when (aref a i)
               do (format out "~4,'0X ~A ~A~%"
