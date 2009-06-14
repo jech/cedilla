@@ -55,12 +55,12 @@
 
 (defclass named-glyph-font-instance (font-instance)
   ((glyphs :type vector
-           :initform (make-array 256 :fill-pointer 32)
+           :initform (make-array 256 :initial-element nil :fill-pointer 32)
            :accessor instance-glyphs)))
 
 (defclass fixed-encoding-font (font)
   ((glyphs :type simple-vector
-           :initform (make-array 255)
+           :initform (make-array 255 :initial-element nil)
            :accessor font-glyphs)
    (encoding :type function
              :initarg :encoding
