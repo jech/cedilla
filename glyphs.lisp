@@ -270,7 +270,7 @@
              (and g2 (stack g2 g1)))))
           ;; Vietnamese
           ((and (member c1 '(#x300 #x301)) (eql c2 #x302))
-           (let ((g1 (g ccs1)) (g2 (g ccs2)))
+           (let* ((g1 (g ccs1)) (g2 (and g1 (g ccs2))))
              (when g2
                (let* ((x0-1 (glyph-x0 g1)) (y0-1 (glyph-y0 g1))
                       (x1-1 (glyph-x1 g1))
