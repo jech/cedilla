@@ -179,9 +179,9 @@
 (defstruct (composite-glyph (:include glyph) 
                             (:constructor %make-composite-glyph))
   (components '() :type list)
-  (base '() :type glyph)
-  (base-dx 0 :type real)
-  (base-dy 0 :type real)
+  (base '() :type (or null glyph))
+  (base-dx 0 :type (or null real))
+  (base-dy 0 :type (or null real))
 )
 
 (defun glyph-base (glyph)
@@ -206,7 +206,6 @@
               (%make-composite-glyph
                :name name
                :x0 x0 :y0 y0 :x1 x1 :y1 y1
-               :base base :base-dx base-dx :base-dy base-dy
                :components components))
              (base-glyph
               (cond
