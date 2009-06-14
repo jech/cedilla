@@ -91,11 +91,6 @@
 (defun make-named-glyph-ps-font (&rest args)
   (apply #'make-instance 'named-glyph-ps-font args))
 
-(defclass named-glyph-ps-font-instance (named-glyph-font-instance
-                                        ps-font-instance)
-  ()
-  )
-
 (defclass fixed-encoding-ps-font (fixed-encoding-font ps-font)
   ()
   )
