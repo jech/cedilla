@@ -13,12 +13,6 @@
 
 (defpackage "CEDILLA"
     (:use "CL")
-    (:export "CEDILLA" "CEDILLA-MAIN"))
-
-(in-package "CEDILLA")
-
-;;; CLISP is getting saner by the day
-(eval-when (load compile eval)
-  (let ((p (or (find-package "EXT") (find-package "LISP"))))
-    (import (find-symbol "QUIT" p))
-    (import (find-symbol "*ARGS*" p))))
+    (:export "CEDILLA" "CEDILLA-MAIN" "*EXTERNAL-FORMAT-UTF8*")
+    #+CLISP (:import-from "EXT" "*ARGS*" "QUIT")
+    #+CCL (:import-from "CCL" "QUIT"))

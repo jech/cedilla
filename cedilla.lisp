@@ -13,6 +13,11 @@
 
 (in-package "CEDILLA")
 
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (defparameter *external-format-utf8*
+    #+clisp 'charset:utf-8
+    #+ccl (ccl:make-external-format :character-encoding :utf-8)))
+
 (defun cedilla (in-filename &optional (out-filename *standard-output*)
                 &key
                 (wrap nil)
@@ -28,10 +33,12 @@
     (let ((*known-glyphs* (make-hash-table :test 'equal)))
       (dolist (s (append header footer))
         (when s (compute-header-glyphs s font-list)))
-      (with-open-file (in in-filename :external-format 'charset:utf-8)
+      (with-open-file (in in-filename :external-format *external-format-utf8*)
         (compute-stream-glyphs in font-list))
-      (with-open-file (in in-filename :external-format 'charset:utf-8)
-        (with-open-file-or-stream (out out-filename :direction :output)
+      (with-open-file (in in-filename :external-format *external-format-utf8*)
+        (with-open-file-or-stream (out out-filename
+                                       :direction :output
+                                       :if-exists :supersede)
           (typeset-file in out font-list
                         paper
                         :wrap wrap
@@ -168,6 +175,7 @@
               (if size (list :size size))
               (if baselineskip (list :baselineskip baselineskip))))))))
 
+#+clisp
 (defun cedilla-main ()
   "Establish an error-handler and run Cedilla."
   (handler-bind ((error 
