@@ -85,7 +85,7 @@
         (loop for i from 0 upto 255
               when (aref g i)
               do (push (aref g i) glyphs))))
-    (nreverse glyphs)
+    (setf glyphs (nreverse glyphs))
     (format out "/~A 12 dict dup begin~%" (font-name font))
     (format out "/FontType 3 def~%/PaintType 0 def~%")
     (format out "/FontMatrix [0.001 0 0 0.001 0 0] readonly def~%")
