@@ -1,3 +1,13 @@
+Cedilla 0.7:
+  • Changed the format of data.lisp so it doesn't depend on the syntax
+    of characters.
+  • Ported to CCL; this involved fixing a number of minor bugs caught
+    by CCL's compiler.
+  • Regenerated data.lisp against Unicode 6.1.
+  • Implemented search paths for resources.
+  • Rewrote the sample config file to use search paths and to be
+    compatible with the latest version of Debian's TeTeX.
+
 Cedilla 0.6:
   • Fixed support for ZapfDingbats and the Omega fonts.
   • Updated AFM paths to point at the new version of teTeX.
