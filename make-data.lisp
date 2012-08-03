@@ -223,6 +223,7 @@
     (with-open-file (out out-filename :direction :output :if-exists :supersede)
       (with-standard-io-syntax
         (let ((*print-pretty* nil)
+              (*print-readably* nil)    ; work around Clisp issue
               (*package* (find-package "CEDILLA")))
           (format out ";;; Automatically generated file -- do not modify~%")
           (print '(in-package "CEDILLA") out)
