@@ -69,10 +69,10 @@
               (and type
                    (if binary
                        (make-pfb-ps-resource :type :font
-                                             :name second-word
+                                             :name name
                                              :filename filename)
                        (make-file-ps-resource :type :font
-                                              :name second-word
+                                              :name name
                                               :filename filename))))))))))
 
 (defun resource-equivalent-p (r1 r2)
