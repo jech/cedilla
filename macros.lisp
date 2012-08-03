@@ -54,3 +54,26 @@
             (,b ,f-name)
             (with-open-file (,var ,filename ,@args)
               (,b ,var)))))))
+
+(defvar *resources-path* '()
+  "The list of directories searched for resources")
+
+(defun find-file-with-path (filename path)
+  "Find a file FILENAME in one of the directories in PATH, NIL otherwise."
+  (cond
+    ((eql #\/ (schar filename 0))
+     (probe-file filename))
+    (t
+     (dolist (dir path)
+       (let ((fn (concatenate 'string dir "/" filename)))
+         (when (probe-file fn)
+           (return-from find-file-with-path fn))))
+     nil)))
+
+(defmacro with-open-file-with-path ((var filename path &rest args) &body body)
+  (let ((f-name (gensym "FILENAME")))
+    `(let ((,f-name (find-file-with-path ,filename ,path)))
+       (when (null ,f-name)
+         (error (make-condition 'file-error)))
+       (with-open-file (,var ,f-name ,@args)
+         ,@body))))
