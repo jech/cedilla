@@ -160,8 +160,7 @@
      (list (apply #'cedilla-list-all (and fontset (list fontset))))
      (t    
       (unless (<= 1 (length args) 2)
-        (error "Wrong number of arguments -- try \"cedilla -?\" for help"
-               (length args)))
+        (error "Wrong number of arguments -- try \"cedilla -?\" for help"))
       (apply #'cedilla
              (car args) (or (cadr args) *standard-output*)
              (nconc
