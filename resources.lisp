@@ -20,57 +20,60 @@
             (warn "Unable to identify resource ~A: ~A"
                   filename c)
             (return-from identify-resource nil))))
-    (with-open-file (in filename :element-type '(unsigned-byte 8))
-      (let* ((b0 (read-byte in nil nil))
-             (b1 (and b0 (read-byte in nil nil)))
-             (binary
+    (let ((filename (find-file-with-path filename *resources-path*)))
+      (when (null filename)
+        (error 'file-error))
+      (with-open-file (in filename :element-type '(unsigned-byte 8))
+        (let* ((b0 (read-byte in nil nil))
+               (b1 (and b0 (read-byte in nil nil)))
+               (binary
+                (cond
+                  ((and (eql b0 #x80) (eql b1 1)) t)
+                  ((and (eql b0 (char-code #\%)) (eql b1 (char-code #\!)))
+                   nil)
+                  (t (error "Unknown file type"))))
+               (len
+                (if binary
+                    (let ((b2 (read-byte in nil nil))
+                          (b3 (read-byte in nil nil))
+                          (b4 (read-byte in nil nil))
+                          (b5 (read-byte in nil nil)))
+                      (+ b2 (ash b3 8) (ash b4 16) (ash b5 24)))
+                    #x10000))
+               (line (make-array 80 :element-type 'character
+                                 :fill-pointer 0 :adjustable t)))
+          (unless binary
+            (vector-push-extend #\% line)
+            (vector-push-extend #\! line))
+          (when (< len 1) (return-from identify-resource nil))
+          (do* ((b (read-byte in) (read-byte in))
+                (c (code-char b) (code-char b))
+                (i 0 (+ i 1)))
+               ((or (>= i len) (member c '(#\Newline #\Return))))
+            (vector-push-extend c line))
+          (let* ((first-space (position #\Space line))
+                 (second-space 
+                  (and first-space
+                       (position #\Space line :start (+ first-space 1))))
+                 (first-word (subseq line 0 first-space))
+                 (second-word (and first-space
+                                   (subseq line 
+                                           (+ first-space 1) second-space))))
+            (let (type name)
               (cond
-                ((and (eql b0 #x80) (eql b1 1)) t)
-                ((and (eql b0 (char-code #\%)) (eql b1 (char-code #\!)))
-                 nil)
-                (t (error "Unknown file type"))))
-             (len
-              (if binary
-                  (let ((b2 (read-byte in nil nil))
-                        (b3 (read-byte in nil nil))
-                        (b4 (read-byte in nil nil))
-                        (b5 (read-byte in nil nil)))
-                    (+ b2 (ash b3 8) (ash b4 16) (ash b5 24)))
-                  #x10000))
-             (line (make-array 80 :element-type 'character
-                               :fill-pointer 0 :adjustable t)))
-        (unless binary
-          (vector-push-extend #\% line)
-          (vector-push-extend #\! line))
-        (when (< len 1) (return-from identify-resource nil))
-        (do* ((b (read-byte in) (read-byte in))
-              (c (code-char b) (code-char b))
-              (i 0 (+ i 1)))
-             ((or (>= i len) (member c '(#\Newline #\Return))))
-          (vector-push-extend c line))
-        (let* ((first-space (position #\Space line))
-               (second-space 
-                (and first-space
-                     (position #\Space line :start (+ first-space 1))))
-               (first-word (subseq line 0 first-space))
-               (second-word (and first-space
-                                 (subseq line 
-                                         (+ first-space 1) second-space))))
-          (let (type name)
-            (cond
-              ((and
-                (>= (length first-word) 15)
-                (equal (subseq first-word 0 15) "%!PS-AdobeFont-"))
-               (setf type :font name second-word))
-              (t (error "Unknown resource type ~A" first-word)))
-            (and type
-                 (if binary
-                     (make-pfb-ps-resource :type :font
-                                           :name second-word
-                                           :filename filename)
-                     (make-file-ps-resource :type :font
-                                            :name second-word
-                                            :filename filename)))))))))
+                ((and
+                  (>= (length first-word) 15)
+                  (equal (subseq first-word 0 15) "%!PS-AdobeFont-"))
+                 (setf type :font name second-word))
+                (t (error "Unknown resource type ~A" first-word)))
+              (and type
+                   (if binary
+                       (make-pfb-ps-resource :type :font
+                                             :name second-word
+                                             :filename filename)
+                       (make-file-ps-resource :type :font
+                                              :name second-word
+                                              :filename filename))))))))))
 
 (defun resource-equivalent-p (r1 r2)
   (and (eql (ps-resource-type r1) (ps-resource-type r2))

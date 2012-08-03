@@ -35,7 +35,8 @@
                 (warn "Unable to read AFM file ~A: ~A"
                       filename c)
                 (return-from read-afm-file nil))))
-        (with-open-file (in filename :direction :input)
+        (with-open-file-with-path (in filename *resources-path*
+                                   :direction :input)
           (read-afm-data in font omit))
         (resolve-composite-glyphs font)
         font))))
